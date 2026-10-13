@@ -140,6 +140,20 @@
       "asset": "neon-wake-e0839d391a-v1.0.0.zip"
     },
     {
+      "id": "rick-and-morty-scrapworld-8094dbee77",
+      "title": "Rick and Morty - Scrapworld",
+      "source_file": "Rick and Morty - Scrapworld.zip",
+      "bytes": 7321949,
+      "sha256": "ef12a035432c5ec437a7b93d5e83b6c5aca6bcb864f0c0d922b73f420c3e863e",
+      "resolution": {
+        "width": 384,
+        "height": 224
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013140502",
+      "asset": "rick-and-morty-scrapworld-8094dbee77-v1.0.0.zip"
+    },
+    {
       "id": "sonic-25-sage-0-fbef393db1",
       "title": "sonic_25_sage-0",
       "source_file": "sonic_25_sage-0.zip",
@@ -148,6 +162,20 @@
       "version": "1.0.1",
       "tag": "carts-20261001134220",
       "asset": "sonic-25-sage-0-fbef393db1-v1.0.1.zip"
+    },
+    {
+      "id": "tom-and-jerry-pantry-panic-030b350805",
+      "title": "Tom and Jerry - Pantry Panic",
+      "source_file": "Tom and Jerry - Pantry Panic.zip",
+      "bytes": 6107128,
+      "sha256": "c7f75460dd641fb1714c8c48642737a8f50fd4818dc7c96f3a2e7a421139e54c",
+      "resolution": {
+        "width": 384,
+        "height": 224
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013140502",
+      "asset": "tom-and-jerry-pantry-panic-030b350805-v1.0.0.zip"
     },
     {
       "id": "turbo-invation-a5dcc9d306",
@@ -256,6 +284,20 @@
       "asset": "cart-7e911293d9-v1.0.1.zip"
     },
     {
+      "id": "cart-9998af0fbf",
+      "title": "江上寻境",
+      "source_file": "江上寻境.zip",
+      "bytes": 6083359,
+      "sha256": "7528ebd72ff05fda4c9f3ab8b3bf027107ce09d83245539897b81d94bf64393b",
+      "resolution": {
+        "width": 512,
+        "height": 288
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013140502",
+      "asset": "cart-9998af0fbf-v1.0.0.zip"
+    },
+    {
       "id": "cart-0408eece05",
       "title": "海风单车·鹈鹕快递",
       "source_file": "海风单车·鹈鹕快递.zip",
@@ -304,7 +346,21 @@
       "version": "1.0.1",
       "tag": "carts-20261001134220",
       "asset": "cart-848e2cd48d-v1.0.1.zip"
+    },
+    {
+      "id": "cart-52155399b3",
+      "title": "闪身步",
+      "source_file": "闪身步.zip",
+      "bytes": 5663310,
+      "sha256": "f09e0feafd1ec4acff338cfd40f46ccb420cc2ed051d6a407f73bf06ecae01c1",
+      "resolution": {
+        "width": 384,
+        "height": 224
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013140502",
+      "asset": "cart-52155399b3-v1.0.0.zip"
     }
   ],
-  "updated_at": "2026-10-09T17:07:23.980952+00:00"
+  "updated_at": "2026-10-13T14:05:22.704704+00:00"
 }
