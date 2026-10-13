@@ -164,6 +164,20 @@
       "asset": "sonic-25-sage-0-fbef393db1-v1.0.1.zip"
     },
     {
+      "id": "the-long-night-1187b9e64c",
+      "title": "The Long Night",
+      "source_file": "The Long Night.zip",
+      "bytes": 744287,
+      "sha256": "d24af239b1ba37e70843eb3be59bba7830f87ecd0990c9b28315a6c5cc523958",
+      "resolution": {
+        "width": 384,
+        "height": 216
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013172841",
+      "asset": "the-long-night-1187b9e64c-v1.0.0.zip"
+    },
+    {
       "id": "tom-and-jerry-pantry-panic-030b350805",
       "title": "Tom and Jerry - Pantry Panic",
       "source_file": "Tom and Jerry - Pantry Panic.zip",
@@ -360,7 +374,21 @@
       "version": "1.0.0",
       "tag": "carts-20261013140502",
       "asset": "cart-52155399b3-v1.0.0.zip"
+    },
+    {
+      "id": "cart-499c41a489",
+      "title": "雪山救狐：酱鸭寻仇",
+      "source_file": "雪山救狐：酱鸭寻仇.zip",
+      "bytes": 566150,
+      "sha256": "b553458430ab1657a365313a53ffa1b3b731eaa6c8f9ce2d13ea5714c010605b",
+      "resolution": {
+        "width": 512,
+        "height": 288
+      },
+      "version": "1.0.0",
+      "tag": "carts-20261013172841",
+      "asset": "cart-499c41a489-v1.0.0.zip"
     }
   ],
-  "updated_at": "2026-10-13T14:05:22.704704+00:00"
+  "updated_at": "2026-10-13T17:28:48.078332+00:00"
 }
