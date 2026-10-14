@@ -13,7 +13,7 @@ separate guide linked above.
 
 We recommend the **OpenAI GPT-6 family** for AI-assisted game creation in Turbo8.
 Our quality-first choice is **GPT-6 Astra** (`gpt-6-astra`); **GPT-6.1 Sol** is
-also a good option. The concrete example below uses GPT-6.1 Sol. Confirm model
+also a good option. The official API example below uses GPT-6 Astra. Confirm model
 access and pricing in your own OpenAI account before sending requests.
 
 ### Example 1: OpenAI official API
@@ -22,19 +22,19 @@ Create a key in the [OpenAI API dashboard](https://platform.openai.com/api-keys)
 confirm API billing, then open **Settings → AI settings** in Turbo8.
 Fill in these fields in order: provider, endpoint, key, model, protocol.
 
-| Setting | GPT-6.1 example |
+| Setting | GPT-6 Astra example |
 | --- | --- |
 | Provider | **OpenAI** |
 | ENDPOINT | `https://api.openai.com/v1` |
 | API KEY | Your own OpenAI API key |
-| MODEL | `gpt-6.1-sol` |
+| MODEL | `gpt-6-astra` |
 | API PROTOCOL | **Responses** (or **Auto (recommended)** at this official URL) |
 | REASONING EFFORT | **Medium** |
 
-Use the exact model ID `gpt-6.1-sol`, not the shorthand `gpt6.1`. This model needs
+Use the exact model ID `gpt-6-astra`, not the shorthand `astra`. This model needs
 Responses for tool calling, which Turbo8 uses to edit games. Medium is a supported
 starting point; do not select None or Minimal for this model. See the
-[official GPT-6.1 Sol documentation](https://developers.openai.com/api/docs/models/gpt-6.1-sol).
+[official GPT-6 Astra documentation](https://developers.openai.com/api/docs/models/gpt-6-astra).
 If your account cannot access it, choose another documented model you can access
 and check its tool/protocol support. This example does not change your saved model.
 
@@ -160,7 +160,7 @@ API 模式直接连接你选择的服务商，不需要安装 Codex CLI 或 Node
 
 推荐使用 **OpenAI GPT-6 系列**进行 Turbo8 AI 游戏创作。追求极致效果首选
 **GPT-6 Astra**（`gpt-6-astra`），**GPT-6.1 Sol** 也是可选方案。
-以下直接以 GPT-6.1 为例；调用前请在自己的 OpenAI 账号中确认模型权限和费用。
+以下官方 API 案例直接以 GPT-6 Astra 为例；调用前请在自己的 OpenAI 账号中确认模型权限和费用。
 
 ### 案例一：OpenAI 官方 API
 
@@ -168,18 +168,18 @@ API 模式直接连接你选择的服务商，不需要安装 Codex CLI 或 Node
 然后打开 Turbo8 的 **Settings → AI settings**，按服务商、地址、密钥、模型、协议
 的顺序填写：
 
-| 设置项 | GPT-6.1 示例 |
+| 设置项 | GPT-6 Astra 示例 |
 | --- | --- |
 | Provider | **OpenAI** |
 | ENDPOINT | `https://api.openai.com/v1` |
 | API KEY | 你自己的 OpenAI API Key |
-| MODEL | `gpt-6.1-sol` |
+| MODEL | `gpt-6-astra` |
 | API PROTOCOL | **Responses**（这个官方地址也可以选 **Auto (recommended)**） |
 | REASONING EFFORT | **Medium** |
 
-模型名要填写完整的 `gpt-6.1-sol`，不要只写 `gpt6.1`。Turbo8 编辑游戏需要工具调用，
+模型名要填写完整的 `gpt-6-astra`，不要只写 `astra`。Turbo8 编辑游戏需要工具调用，
 此模型应使用 Responses 协议；推理强度可先选 Medium，不要选 None 或 Minimal。
-详见 [GPT-6.1 Sol 官方文档](https://developers.openai.com/api/docs/models/gpt-6.1-sol)。
+详见 [GPT-6 Astra 官方文档](https://developers.openai.com/api/docs/models/gpt-6-astra)。
 如果账号暂时没有权限，请自行选择有权限的模型并确认其工具调用和协议支持；
 本示例不会替换你已保存的模型设置。
 
