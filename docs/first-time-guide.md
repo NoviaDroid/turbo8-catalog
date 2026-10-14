@@ -12,9 +12,11 @@ appears in your account's available models**. This is a Turbo8 recommendation,
 not a promise of access or a change to your saved model.
 
 1. Open **CREATE WITH AI** or the editor's **AI** feature. If you have not set up
-   AI, the **Choose your AI** wizard opens. The recommended **ChatGPT / Codex**
-   route is selected; choose **CONTINUE**. The **Setup guide ↗** link lives in
-   the header, separate from the navigation buttons.
+   AI, the **Choose how to connect** wizard opens with two direct choices.
+   Choose **USE CODEX** in the recommended **Codex / ChatGPT** card, or
+   **USE API KEY** for your own provider. Codex requires Codex App or Codex CLI
+   installed on this computer; API mode does not. The **First-time Guide ↗**
+   link lives in the header, separate from the navigation buttons.
 2. Read the connection status. Turbo8 checks for a local Codex engine and Node.js,
    including supported copies bundled with Codex App / ChatGPT. If something is
    missing, follow the [Codex installation guide](codex-setup.md). Install only
@@ -33,7 +35,7 @@ grant access. See [official OpenAI authentication guidance](https://learn.chatgp
 
 ### Alternative: use an API key
 
-Choose **Use an API key instead →** if you prefer your own API provider or are on a device
+Choose **USE API KEY** if you prefer your own API provider or are on a device
 without the desktop Codex connection. No Codex or Node.js installation is needed
 for this route.
 
@@ -84,8 +86,10 @@ guides; this documentation does not imply a new download has been published.
 为准；推荐不代表账户一定有权限，也不会替换已保存的模型。
 
 1. 点击 **CREATE WITH AI** 或编辑器里的 **AI**。尚未配置时会出现
-   **Choose your AI** 向导，默认推荐 **ChatGPT / Codex**，点击 **CONTINUE**。
-   **Setup guide ↗** 位于标题区，与底部导航操作分开。
+   **Choose how to connect** 向导，可以直接二选一。推荐的 **Codex / ChatGPT**
+   卡片点击 **USE CODEX**；自己的 API 服务点击 **USE API KEY**。
+   Codex 方式需要在本机安装 Codex App 或 Codex CLI；API 方式不需要。
+   **First-time Guide ↗** 位于标题区，与底部导航操作分开。
 2. 查看连接状态。Turbo8 会检查本机 Codex 引擎与 Node.js，也会查找支持的
    Codex App / ChatGPT 内置组件。缺什么才安装什么：按照
    [Codex 安装指南](codex-setup.md#中文)在**运行 Turbo8 的同一台电脑**安装，
@@ -103,7 +107,7 @@ guides; this documentation does not imply a new download has been published.
 ### 另一种方式：API 密钥
 
 如果你希望使用自己的 API 服务，或设备不能使用桌面 Codex 连接，可以选择
-**Use an API key instead →**。此方式不需要安装 Codex 或 Node.js。
+**USE API KEY**。此方式不需要安装 Codex 或 Node.js。
 
 1. 选择 **OpenAI** 或 **Custom**。**先填 BASE URL**，再填 **API KEY** 与服务商
    提供的准确 **MODEL** ID。修改 URL 会清空密钥，避免误发到另一个地址。
