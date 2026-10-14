@@ -7,8 +7,8 @@
 ### Start with ChatGPT / Codex — recommended
 
 For AI-assisted game creation, **ChatGPT / Codex is our first choice**. We
-recommend a **GPT-6 family** model, such as GPT-6.1 Sol or GPT-6 Sol, **when it
-appears in your account's available models**. This is a Turbo8 recommendation,
+recommend **GPT-6 Astra** as our quality-first choice; **GPT-6.1 Sol** is also a
+good option, **when available to your account**. This is a Turbo8 recommendation,
 not a promise of access or a change to your saved model.
 
 1. Open **CREATE WITH AI** or the editor's **AI** feature. If you have not set up
@@ -25,7 +25,7 @@ not a promise of access or a change to your saved model.
 3. Choose **SIGN IN WITH CHATGPT** and complete sign-in in your browser yourself.
    If needed, use **USE DEVICE CODE**, **OPEN SIGN-IN**, and **COPY CODE**.
 4. Once signed in, choose **CONTINUE** to the model step and select a model returned for your account. We recommend GPT-6;
-   the wizard prefers GPT-6.1 Sol, then GPT-6 Sol when offered for a new setup.
+   the wizard prefers GPT-6 Astra, then GPT-6.1 Sol when offered for a new setup.
    Choose **START CREATING** to return to your game idea.
 
 This route is desktop-only. It uses the local Codex connection, not remote
@@ -42,7 +42,8 @@ for this route.
 1. Choose **OpenAI** or **Custom**. Set the **BASE URL first**, then enter the
    **API KEY** and exact **MODEL** ID from your provider. Changing the URL clears
    the key to avoid sending it to a different endpoint by accident.
-2. For OpenAI, we recommend a GPT-6 family model your API account can access.
+2. For OpenAI, our quality-first recommendation is GPT-6 Astra; GPT-6.1 Sol is
+   also an option. Use a model your API account can access.
    Start with **Auto** protocol; open **Show advanced protocol** only if your
    provider requires a particular protocol. Use a base URL, not a final
    `/responses` or `/chat/completions` route.
@@ -82,7 +83,8 @@ guides; this documentation does not imply a new download has been published.
 ### 首选 ChatGPT / Codex，推荐 GPT-6
 
 对于 Turbo8 的 AI 游戏创作，我们**首选 ChatGPT / Codex 连接方式**，并推荐
-**GPT-6 系列**，例如 GPT-6.1 Sol 或 GPT-6 Sol。请以你账户实际返回的可用模型
+**GPT-6 系列**：追求极致创作效果，首选 **GPT-6 Astra**；**GPT-6.1 Sol** 也是
+可选方案。请以你账户实际返回的可用模型
 为准；推荐不代表账户一定有权限，也不会替换已保存的模型。
 
 1. 点击 **CREATE WITH AI** 或编辑器里的 **AI**。尚未配置时会出现
@@ -97,7 +99,7 @@ guides; this documentation does not imply a new download has been published.
 3. 点击 **SIGN IN WITH CHATGPT**，由你本人在浏览器完成登录。需要时可以选
    **USE DEVICE CODE**，再用 **OPEN SIGN-IN** 和 **COPY CODE**。
 4. 登录后点击 **CONTINUE** 进入模型选择步骤，从账户实际返回的列表选择模型。
-   新配置优先推荐 GPT-6.1 Sol，其次 GPT-6 Sol。点击 **START CREATING**
+   新配置优先推荐 GPT-6 Astra，其次 GPT-6.1 Sol。点击 **START CREATING**
    返回创作界面，继续原来的想法。
 
 此方式仅适用于桌面端。Turbo8 使用本机 Codex 连接，不是遥控 Codex App 中的
@@ -111,7 +113,8 @@ guides; this documentation does not imply a new download has been published.
 
 1. 选择 **OpenAI** 或 **Custom**。**先填 BASE URL**，再填 **API KEY** 与服务商
    提供的准确 **MODEL** ID。修改 URL 会清空密钥，避免误发到另一个地址。
-2. OpenAI 同样推荐你有权限使用的 GPT-6 系列。协议先保持 **Auto**；只有服务商
+2. OpenAI 同样首选 GPT-6 Astra，GPT-6.1 Sol 也可以，请确认账户权限。
+   协议先保持 **Auto**；只有服务商
    有特殊要求时，才打开 **Show advanced protocol**。填写基础地址，不要填最终
    的 `/responses` 或 `/chat/completions` 请求路径。
 3. 可选点击 **TEST CONNECTION**：它会向显示的地址发送一次真实的小请求，可能
