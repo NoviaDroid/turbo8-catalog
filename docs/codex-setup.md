@@ -56,9 +56,9 @@ provider uses ChatGPT sign-in, not an API key entered in Turbo8. See
 ### Recommended model: GPT-6 / GPT-6.1
 
 For Turbo8 AI game creation, we recommend the **OpenAI GPT-6 family**, starting
-with **GPT-6.1 Sol** (`gpt-6.1-sol`) when available. After **CONNECTED**, select it
-in Turbo8's model list and save your settings. You can also choose **GPT-6 Sol**
-(`gpt-6-sol`) if it is available to your account. Start with the model's default
+with **GPT-6 Astra** (`gpt-6-astra`) as our quality-first choice when available.
+After **CONNECTED**, select it in Turbo8's model list and save your settings.
+**GPT-6.1 Sol** (`gpt-6.1-sol`) is also a good option. Start with the model's default
 reasoning effort and increase it for more complex tasks.
 
 Use the models actually returned for your account. A missing model does not by
@@ -120,8 +120,9 @@ Node.js。即使 Codex 使用独立安装方式，Turbo8 的本地工具适配�
 ### 推荐模型：GPT-6 / GPT-6.1
 
 推荐使用 **OpenAI GPT-6 系列**进行 Turbo8 AI 游戏创作，优先选择
-**GPT-6.1 Sol**（`gpt-6.1-sol`）。显示 **CONNECTED** 后，在 Turbo8 的模型列表中
-选择它并保存设置；也可以选择账号可用的 **GPT-6 Sol**（`gpt-6-sol`）。
+**GPT-6 Astra**（`gpt-6-astra`）以追求极致创作效果；**GPT-6.1 Sol**
+（`gpt-6.1-sol`）也可以。显示 **CONNECTED** 后，在 Turbo8 的模型列表中
+选择账号可用的模型并保存设置。
 推理强度先使用模型默认值，复杂任务再提高。
 
 请以账号实际返回的模型列表为准。模型没有出现不一定是 CLI 太旧，也可能与套餐、
