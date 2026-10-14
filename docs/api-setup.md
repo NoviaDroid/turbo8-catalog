@@ -12,8 +12,9 @@ separate guide linked above.
 ### Recommended: OpenAI GPT-6 / GPT-6.1
 
 We recommend the **OpenAI GPT-6 family** for AI-assisted game creation in Turbo8.
-Start with **GPT-6.1 Sol** using the concrete settings below; confirm access and
-pricing in your own OpenAI account before sending requests.
+Our quality-first choice is **GPT-6 Astra** (`gpt-6-astra`); **GPT-6.1 Sol** is
+also a good option. The concrete example below uses GPT-6.1 Sol. Confirm model
+access and pricing in your own OpenAI account before sending requests.
 
 | Setting | GPT-6.1 example |
 | --- | --- |
@@ -118,7 +119,8 @@ API 模式直接连接你选择的服务商，不需要安装 Codex CLI 或 Node
 
 ### 推荐使用 OpenAI GPT-6 / GPT-6.1
 
-推荐使用 **OpenAI GPT-6 系列**进行 Turbo8 AI 游戏创作，可从 **GPT-6.1 Sol** 开始。
+推荐使用 **OpenAI GPT-6 系列**进行 Turbo8 AI 游戏创作。追求极致效果首选
+**GPT-6 Astra**（`gpt-6-astra`），**GPT-6.1 Sol** 也是可选方案。
 以下直接以 GPT-6.1 为例；调用前请在自己的 OpenAI 账号中确认模型权限和费用。
 
 | 设置项 | GPT-6.1 示例 |
