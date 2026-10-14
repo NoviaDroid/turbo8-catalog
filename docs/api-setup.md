@@ -52,13 +52,15 @@ not your OpenAI key or ChatGPT login.
 | Provider | **Custom** |
 | ENDPOINT | `https://api.apikey.fan/v1` |
 | API KEY | Your APIKEY.FAN-issued key |
-| MODEL | `gpt-6.1-sol`, only if enabled for your key/group |
+| MODEL | `gpt-6-astra`, only if enabled for your key/group |
 | API PROTOCOL | **Responses** — select explicitly, not Auto |
 | REASONING EFFORT | **Medium**; use Provider default if the gateway rejects this parameter |
 | PROVIDER WEB SEARCH | Disabled initially; enable only after confirming support |
 
 The [provider's public quick-start example](https://apikey.fan/) lists this base
-URL, model and Responses protocol; see also its [integration docs](https://apikey.fan/docs).
+URL and Responses protocol, but uses GPT-6.1 Sol. This Turbo8 example chooses
+GPT-6 Astra; confirm that your key/group supports that exact model before use.
+See also its [integration docs](https://apikey.fan/docs).
 In Turbo8, set the endpoint **before** the key, use **FETCH MODELS** or **MANUAL
 INPUT**, then save and test. Do not enter the website URL `https://apikey.fan/`
 or append `/responses`. Custom + Auto normally selects Chat Completions, so this
@@ -196,13 +198,15 @@ API 模式直接连接你选择的服务商，不需要安装 Codex CLI 或 Node
 | Provider | **Custom** |
 | ENDPOINT | `https://api.apikey.fan/v1` |
 | API KEY | APIKEY.FAN 后台创建的密钥 |
-| MODEL | `gpt-6.1-sol`，前提是你的密钥／分组有权限 |
+| MODEL | `gpt-6-astra`，前提是你的密钥／分组有权限 |
 | API PROTOCOL | 手动选 **Responses**，不要保留 Auto |
 | REASONING EFFORT | **Medium**；若网关拒绝该参数，改为 Provider default |
 | PROVIDER WEB SEARCH | 先关闭，确认支持后再开启 |
 
-以上地址、模型与 Responses 协议来自[服务商首页的公开接入示例](https://apikey.fan/)，
-也可查看其[接入文档](https://apikey.fan/docs)。在 Turbo8 中**先填地址，再填密钥**，
+以上地址与 Responses 协议来自[服务商首页的公开接入示例](https://apikey.fan/)，
+但服务商示例使用的是 GPT-6.1 Sol。本 Turbo8 案例统一选 GPT-6 Astra，使用前须确认
+你的密钥／分组支持这个准确的模型 ID；也可查看其[接入文档](https://apikey.fan/docs)。
+在 Turbo8 中**先填地址，再填密钥**，
 用 **FETCH MODELS** 获取模型或用 **MANUAL INPUT** 手动填写，再保存并测试。
 不要把网站首页 `https://apikey.fan/` 当成 API 地址，也不要在地址后附加 `/responses`。
 Custom 的 Auto 通常会选择 Chat Completions，因此本案例必须手动选择 **Responses**。
