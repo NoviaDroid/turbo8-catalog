@@ -1,0 +1,60 @@
+name: Publish catalog
+on:
+  push:
+    branches: [main]
+    paths: ['carts/**', 'docs/**', 'tools/**', '.github/workflows/publish.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: catalog-publication
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Build and verify versioned releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/catalog_pipeline.py build --output "$RUNNER_TEMP/site" --publish
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: ${{ runner.temp }}/site
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: expected-catalog
+          path: ${{ runner.temp }}/site/catalog-v2.json
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+        id: deployment
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: expected-catalog
+          path: expected
+      - run: python3 tools/catalog_pipeline.py verify-pages --expected expected/catalog-v2.json
