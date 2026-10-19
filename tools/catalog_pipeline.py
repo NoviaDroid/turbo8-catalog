@@ -72,19 +72,19 @@ def validate(files, cart_id, actor=None, previous=None, check_js=True):
     require('submission.json' in files and len(files['submission.json']) <= 16384, 'Missing or oversized submission.json')
     meta = json.loads(files['submission.json'])
     require(isinstance(meta, dict) and meta.get('schema') == 1, 'Unsupported submission schema')
-    allowed = {'schema', 'id', 'author_id', 'title', 'summary', 'controls', 'version', 'code_license', 'assets_license', 'changes', 'remix_of'}
+    for retired in ('remix_of', 'code_license', 'assets_license', 'controls'):
+        meta.pop(retired, None)  # Ignore retired fields in existing submissions.
+    allowed = {'schema', 'id', 'author_id', 'title', 'summary', 'version', 'changes'}
     require(set(meta) <= allowed, 'Unknown submission field')
     require(meta.get('id') == cart_id, 'ID does not match directory')
     author = meta.get('author_id')
     require(type(author) is int and author > 0 and cart_id.startswith(f'u{author}-'), 'Invalid author ID')
     if actor is not None:
         require(author == actor, 'Only the verified GitHub author may submit this cartridge')
-    for key, limit in [('title', 120), ('summary', 2000), ('controls', 1000), ('code_license', 200), ('assets_license', 200), ('changes', 2000)]:
+    for key, limit in [('title', 120), ('summary', 2000), ('changes', 2000)]:
         value = meta.get(key)
         require(isinstance(value, str) and 0 < len(value.strip()) <= limit and '\x00' not in value, f'Missing or invalid {key}')
     version(meta.get('version'))
-    remix = meta.get('remix_of', '')
-    require(isinstance(remix, str) and (not remix or re.fullmatch(r'[a-z0-9-]{1,100}', remix)), 'Invalid remix source')
     if previous:
         require(previous['author_id'] == author and previous['id'] == cart_id, 'Author and ID are immutable')
         require(version(meta['version']) > version(previous['version']), 'An update must increase the version')
@@ -115,7 +115,7 @@ def validate(files, cart_id, actor=None, previous=None, check_js=True):
         require(isinstance(entry, dict) and isinstance(entry.get('id'), str) and re.fullmatch(r'[A-Za-z][A-Za-z0-9_-]{0,63}', entry['id']), 'Invalid image entry')
         require(entry['id'] not in image_ids, 'Duplicate image ID')
         image_ids.add(entry['id'])
-        name = 'images/' + entry['id'] + '.png' 
+        name = 'images/' + entry['id'] + '.png'
         require(entry.get('file') == name and name in cartridge, 'Missing embedded image')
         require(len(cartridge[name]) <= 8 * 1024 * 1024, 'Embedded image too large')
         iw, ih = png_size(cartridge[name])
@@ -318,7 +318,7 @@ def build(root, output, publish=False):
         asset = f'{directory.name}-v{meta["version"]}.zip'
         if publish:
             release_asset(tag, asset, raw, commit)
-        entries[directory.name] = {'id': directory.name, 'title': meta['title'], 'version': meta['version'], 'tag': tag, 'asset': asset, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'resolution': resolution, 'author_id': meta['author_id'], 'summary': meta['summary'], 'controls': meta['controls'], 'code_license': meta['code_license'], 'assets_license': meta['assets_license'], 'remix_of': meta.get('remix_of', ''), 'submission_revision': revision}
+        entries[directory.name] = {'id': directory.name, 'title': meta['title'], 'version': meta['version'], 'tag': tag, 'asset': asset, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'resolution': resolution, 'author_id': meta['author_id'], 'summary': meta['summary'], 'submission_revision': revision}
         (output / 'covers').mkdir(exist_ok=True)
         (output / 'covers' / (directory.name + '.png')).write_bytes(cover)
     manifest['cartridges'] = sorted(entries.values(), key=lambda x: x['title'].casefold())

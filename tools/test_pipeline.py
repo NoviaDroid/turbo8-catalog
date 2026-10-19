@@ -22,12 +22,42 @@ def png(w, h):
 
 
 def fixture():
-    meta = {'schema': 1, 'id': CART, 'author_id': 123, 'title': 'Review fixture', 'summary': 'A test', 'controls': 'Arrows', 'version': '1.0.0', 'code_license': 'MIT', 'assets_license': 'CC0-1.0', 'changes': 'Initial submission', 'remix_of': ''}
+    meta = {'schema': 1, 'id': CART, 'author_id': 123, 'title': 'Review fixture', 'summary': 'A test', 'version': '1.0.0', 'changes': 'Initial submission'}
     index = {'name': meta['title'], 'cartridgeVersion': meta['version'], 'scripts': ['main.js'], 'resolution': {'width': 256, 'height': 144}}
     return {'submission.json': p.json_bytes(meta), 'cartridge/index.json': p.json_bytes(index), 'cartridge/main.js': b'function _draw() { cls(0); }\n', 'cartridge/cover.png': png(256, 144), 'cartridge/palette.json': b'["#000000","#ffffff"]', 'cartridge/sprites.json': b'[]'}
 
 
 class ValidationTests(unittest.TestCase):
+    def test_retired_controls_are_ignored(self):
+        files = fixture()
+        meta = json.loads(files['submission.json'])
+        meta['controls'] = 123
+        files['submission.json'] = p.json_bytes(meta)
+        self.assertNotIn('controls', p.validate(files, CART, actor=123)[0])
+
+    def test_retired_license_fields_are_ignored(self):
+        files = fixture()
+        meta = json.loads(files['submission.json'])
+        meta.update(code_license=123, assets_license='')
+        files['submission.json'] = p.json_bytes(meta)
+        validated = p.validate(files, CART, actor=123)[0]
+        self.assertNotIn('code_license', validated)
+        self.assertNotIn('assets_license', validated)
+
+    def test_retired_remix_field_is_ignored(self):
+        files = fixture()
+        meta = json.loads(files['submission.json'])
+        meta['remix_of'] = 'old/invalid/source'
+        files['submission.json'] = p.json_bytes(meta)
+        self.assertNotIn('remix_of', p.validate(files, CART, actor=123)[0])
+
+    def test_optional_prose_client_placeholders(self):
+        files = fixture()
+        meta = json.loads(files['submission.json'])
+        meta.update(summary='No description provided.', changes='No update notes provided.')
+        files['submission.json'] = p.json_bytes(meta)
+        p.validate(files, CART, actor=123)
+
     def test_deterministic_zip(self):
         one = p.validate(fixture(), CART)
         two = p.validate(dict(reversed(list(fixture().items()))), CART)
