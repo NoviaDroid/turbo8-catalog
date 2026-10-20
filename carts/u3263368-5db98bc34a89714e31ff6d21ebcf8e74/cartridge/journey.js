@@ -12,33 +12,33 @@ const stepping=[{x:640,y:224,w:40},{x:692,y:201,w:48},{x:754,y:213,w:48},{x:820,
 function say(s,n=110){message=s;messageTime=n;}
 function resetStage(){const st=stages[stage];cam=0;checkpoint=60;helped=false;bridgeTime=0;bridgeLocked=false;stageSeeds=seeds;sparks.length=0;
 p={x:60,y:224,vy:0,vx:0,ground:true,face:1,walk:0,land:0,call:0,hurt:0,jump:0,preJump:0};
-mother={x:stage===2?st.gap[1]+90:160,walk:0,moving:false};leopard={x:stage===1?st.gap[0]-70:st.gap[1]+95,walk:0,moving:false};
-stones=st.rocks.map(x=>({x,y:224,w:28,h:14}));
+mother={x:stage===2?st.gap[1]+90:160,walk:0,moving:false,reply:0};leopard={x:stage===1?st.gap[0]-70:st.gap[1]+95,walk:0,moving:false};
+stones=st.rocks.map(x=>({x,y:224,w:stage===0?38:28,h:stage===0?25:14,snake:stage===0}));
 gems=st.gems.map((x,i)=>({x,y:(x>st.gap[0]&&x<st.gap[1])?171:172+(i%2)*12,got:false}));
 say(stage===0?'方向键移动 · B 跳跃 · A 呼唤妈妈':stage===1?'豹拉在河边等你。A 呼唤，石桥维持七秒。':'妈妈在对岸等你。看准高低石头，再起跳。',180);}
 function _init(){const sz=screen_size();W=sz.width;H=sz.height;prepareMaker();resetStage();}
 function start(){mode='play';stage=0;hp=3;seeds=0;elapsed=0;bumps=0;resetStage();music(0);}
 function burst(x,y,c){for(let i=0;i<9;i++)if(sparks.length<70)sparks.push({x,y,vx:Math.cos(i*2.4)*1.8,vy:-1-Math.sin(i)*2,t:22,c});}
-function hurt(){if(p.hurt||mode!=='play')return;hp--;bumps++;p.hurt=42;sfx(2);burst(p.x,p.y-20,9);
-if(hp<=0){mode='lose';return;}p.x=checkpoint;p.y=224;p.vy=0;p.vx=0;p.ground=true;say('跌倒了也能站起来。再试一次！');}
+function hurt(snake=false){if(p.hurt||mode!=='play')return;hp--;bumps++;p.hurt=42;sfx(2);burst(p.x,p.y-20,9);
+if(hp<=0){mode='lose';return;}p.x=checkpoint;p.y=224;p.vy=0;p.vx=0;p.ground=true;say(snake?'小绳头在前面！按 B 跳过它。':'跌倒了也能站起来。再试一次！');}
 function groundAt(x){const st=stages[stage],g=st.gap;if(x>g[0]&&x<g[1]){if(st.kind==='hop'){for(let s of stepping)if(Math.abs(x-s.x)<s.w/2)return s.y;return 999;}return helped?224:999;}return 224;}
 function _update(){tick++;if(mode==='title'){if(btnp(4))showMaker();return;}
 if(mode==='maker'){if(btnp(5))mode='title';else if(btnp(4))start();return;}
 if(mode==='lose'||mode==='win'){if(btnp(5)){mode='title';stage=0;resetStage();}else if(btnp(4)){if(mode==='lose'){hp=3;seeds=stageSeeds;resetStage();mode='play';}else start();}return;}
 if(mode==='next'){if(btnp(5)){mode='title';resetStage();return;}if(btnp(4)){stage++;hp=Math.min(3,hp+1);resetStage();mode='play';}return;}
-elapsed++;if(messageTime>0)messageTime--;if(p.hurt>0)p.hurt--;if(p.land>0)p.land--;if(p.call>0)p.call--;
+elapsed++;if(messageTime>0)messageTime--;if(p.hurt>0)p.hurt--;if(p.land>0)p.land--;if(p.call>0)p.call--;if(mother.reply>0)mother.reply--;
 if(bridgeTime>0&&!bridgeLocked&&--bridgeTime===0){helped=false;say('石桥沉下去了。回到豹拉身边，按 A 再试。');}
 const st=stages[stage];let dir=(btn(1)?1:0)-(btn(0)?1:0);
 p.vx+=(dir*2.35-p.vx)*0.42;if(Math.abs(p.vx)<0.07)p.vx=0;
 if(dir)p.face=dir;
 if(btnp(5)&&p.ground&&!p.preJump)p.preJump=2;
 if(p.preJump>0&&--p.preJump===0){p.vy=-8.3;p.ground=false;p.jump=0;sfx(0);}
-if(btnp(4)&&!p.call){p.call=22;sfx(3);
+if(btnp(4)&&!p.call){p.call=22;mother.reply=44;sfx(3);
 if(st.kind==='hop'){say('牛来：这次我能行！B 跳上高处的石头。');}
 else if(st.kind==='timed'&&Math.abs(p.x-leopard.x)<150&&p.x>st.gap[0]-180&&!bridgeLocked){helped=true;bridgeTime=210;say('豹拉：石桥撑住了！快过来！',95);burst(st.gap[0]+32,215,18);}
-else if(st.kind==='help'&&Math.abs(p.x-mother.x)<135&&p.x>st.gap[0]-180&&!helped){helped=true;say('妈妈：踩着石头，慢慢过来。',150);burst(st.gap[0]+32,215,18);}
+else if(st.kind==='help'&&Math.abs(p.x-mother.x)<135&&p.x>st.gap[0]-180&&!helped){helped=true;say('妈妈：牛来，踩着石头，慢慢过来。',150);burst(st.gap[0]+32,215,18);}
 else if(st.kind==='timed')say('靠近河边的豹拉，按 A 请他帮忙。');
-else if(Math.abs(p.x-mother.x)<135)say('妈妈：看清脚下，B 跳过石头。');
+else if(Math.abs(p.x-mother.x)<135)say(stage===0?'妈妈：牛来，小心草蛇，B 跳过去。':'妈妈：看清脚下，B 跳过石头。');
 else say('妈妈：我在前面等你！');}
 
 let oldY=p.y,oldX=p.x;p.x=Math.max(24,Math.min(st.length-28,p.x+p.vx));
@@ -46,7 +46,7 @@ if(!p.ground){p.jump++;p.vy+=btn(5)&&p.vy<0?0.34:0.53;p.y+=p.vy;}
 let gy=groundAt(p.x);if(p.ground&&gy<p.y-6){p.x=oldX;p.vx=0;gy=groundAt(p.x);}if(p.vy>=0&&oldY<=gy+2&&p.y>=gy){if(!p.ground){p.land=7;sfx(1);}p.y=gy;p.vy=0;p.ground=true;}else if(p.ground&&gy>p.y+2){p.ground=false;p.vy=0;}
 if(p.y>H+45)hurt();
 if(p.ground&&Math.abs(p.vx)>.2)p.walk+=Math.abs(p.vx);
-for(let r of stones){if(Math.abs(p.x-r.x)<r.w/2+9&&p.y>r.y-r.h+5&&p.y<r.y+20){hurt();break;}}
+for(let r of stones){if(Math.abs(p.x-r.x)<r.w/2+9&&p.y>r.y-r.h+5&&p.y<r.y+20){hurt(r.snake);break;}}
 for(let g of gems){if(!g.got&&Math.abs(p.x-g.x)<24&&Math.abs(p.y-30-g.y)<36){g.got=true;seeds++;sfx(4);burst(g.x,g.y,10);}}
 if(!helped&&st.kind!=='hop'&&p.x>st.gap[0]-155&&p.x<st.gap[0]&&messageTime<30)say(st.kind==='timed'?'河边的豹拉能撑起石桥。按 A 呼唤。':'前面是河流，按 A 请妈妈帮忙。',90);
 if(p.x>st.gap[0]-155&&p.x<st.gap[0]&&checkpoint===60)checkpoint=st.gap[0]-155;
@@ -80,7 +80,7 @@ const st=stages[stage], gx=st.gap[0]-cam,gw=st.gap[1]-st.gap[0];
 if(gx<W&&gx+gw>0){image_region('river',Math.floor(tick/3)%160,0,1600,887,gx,224,gw,64);
 for(let k=0;k<4;k++){rock(gx-3+(k%2)*3,239+k*15,20-k*2,19);rock(gx+gw+2-(k%2)*4,238+k*15,23-k*2,21);}
 if(st.kind==='hop'){for(let s of stepping)rock(s.x-cam,s.y+8,s.w,25);}else if(helped){for(let x=st.gap[0]+15;x<st.gap[1];x+=30)rock(x-cam,229,40,23);}else{rock(gx-5,233,30,22);rock(gx+gw+5,233,30,22);}}
-for(let r of stones)if(r.x-cam>-40&&r.x-cam<W+40)rock(r.x-cam,r.y+2,r.w+8,r.h+5);
+for(let r of stones)if(r.x-cam>-40&&r.x-cam<W+40){if(r.snake)drawSnake(r.x-cam,r.y,Math.floor(tick/9+ r.x/40)%4);else rock(r.x-cam,r.y+2,r.w+8,r.h+5);}
 sign(116-cam,224);sign(st.length-68-cam,224);
 for(let g of gems)if(!g.got&&g.x-cam>-15&&g.x-cam<W+15){let yy=g.y+Math.sin(tick*.08+g.x)*3;circfill(g.x-cam,yy,5,9);circfill(g.x-cam-1,yy-1,3,10);line(g.x-cam,yy-8,g.x-cam,yy-6,7);}
 }
@@ -92,6 +92,7 @@ if(p.y<=224)shadow(p.x-cam,224,12);
 if(p.hurt%6<4)calf(f,p.x-cam,p.y,p.face<0);
 for(let a of sparks)rectfill(a.x-cam,a.y,a.x-cam+1,a.y+1,a.c);
 if(p.call){let xx=Math.max(10,Math.min(W-70,p.x-cam-66));box(xx,65,60,23);text('妈妈！',xx+8,69,17,FH);}
+if(mother.reply){const mx=mother.x-cam,off=mx<30||mx>W-30;const w=off?96:60;const xx=Math.max(10,Math.min(W-w-10,mx-w/2));box(xx,89,w,23);text(off?'妈妈：牛来！':'牛来！',xx+8,93,18,FH);}
 }
 
 function box(x,y,w,h,fill=16){rectroundfill(x,y,x+w-1,y+h-1,4,fill);}
@@ -161,4 +162,9 @@ function drawMaker(){
   line(43,224,W-44,224,19);
   center('从一个念头，到一起走过三段旅程。',234,18,F);
   center('A 开始同行     B 返回封面',253,17,F);
+}
+
+function drawSnake(x,y,frame){
+  const base=frame<2?30:29;
+  for(let ty=0;ty<4;ty++)for(let tx=0;tx<6;tx++)spr(frame*24+ty*6+tx,Math.floor(x)-24+tx*8,y-base+ty*8);
 }
